@@ -12,11 +12,11 @@ function main(splash, args)
     splash:set_viewport_full()
 
     local email_input = splash:select('input[name=session_key]')
-    email_input:send_text("caruasdo@gmail.com")
+    email_input:send_text("usuario@gmail.com")
     assert(splash:wait(1))
 
     local password_input = splash:select('input[name=session_password]')
-    password_input:send_text("sasukeuchiha")
+    password_input:send_text("contrasena")
     assert(splash:wait(1))
 
     local credentials_submit = splash:select('.sign-in-form__submit-button')
