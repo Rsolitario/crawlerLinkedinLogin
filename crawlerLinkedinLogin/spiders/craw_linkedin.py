@@ -1,9 +1,10 @@
 import scrapy
 from scrapy_splash import SplashRequest
+from pathlib import Path
 
 lua_script = """
 function main(splash, args)
-    splash:init_cookies(splash.arg.cookies)
+    splash:init_cookies(splash.args.cookies)
 
     assert(splash:go(args.url))
     assert(splash:wait(1))
@@ -31,7 +32,7 @@ function main(splash, args)
 """
 
 class LinkedinLoginSpider(scrapy.Spider):
-    name="Linkdin_Login"
+    name="linkedin"
 
     def start_requests(self):
         signin_url = "https://www.linkedin.com/home"
@@ -53,5 +54,7 @@ class LinkedinLoginSpider(scrapy.Spider):
             yield scrapy.Request(url=url, cookies=cookies_dict, callback=self.parse)
     
     def parse(self, response):
+        print(response.body)
+        Path('page.html').write_bytes(response.body)
         with open('response.html', 'wb') as f:
             f.write(response.body)
