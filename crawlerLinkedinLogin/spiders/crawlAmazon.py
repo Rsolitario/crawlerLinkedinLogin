@@ -59,5 +59,6 @@ class AmazonLoginSpider(scrapy.Spider):
             yield scrapy.Request(url=url, cookies=cookies_dict, callback=self.parse)
 
     def parse(self, response):
+        print(response.body)
         with open('response.html', 'wb') as f:
             f.write(response.body)
